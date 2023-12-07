@@ -12,7 +12,7 @@ client = discord.Client(intents=intents)
 
 async def delete_old_messages(messages):  
     for msg in messages:
-        print(f"Deleting message create at {msg.created_at} by user '{msg.author}'.")
+        print(f"Deleting message created at {msg.created_at} by user '{msg.author}'.")
         await msg.delete()
 
 @client.event
