@@ -2,8 +2,8 @@ import discord
 import asyncio
 from datetime import datetime, timedelta
 
-API_TOKEN = '<INSERT API TOKEN>'
-SERVER_ID = <INSERT SERVE ID>
+API_TOKEN = 'ABCDEFGHIJKLMNOP'
+SERVER_ID = 123456789
 RETENTION_PERIOD = 90 # days
 
 intents = discord.Intents.default()
