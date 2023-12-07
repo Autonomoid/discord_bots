@@ -1,5 +1,4 @@
 import discord
-import asyncio
 from datetime import datetime, timedelta
 
 API_TOKEN = 'ABCDEFGHIJKLMNOP'
