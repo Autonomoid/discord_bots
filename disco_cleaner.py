@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 API_TOKEN = 'ABCDEFGHIJKLMNOP'
 SERVER_ID = 123456789
 RETENTION_PERIOD = 90 # days
+BOT_CHANNEL_ID = 987654321
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -25,6 +26,9 @@ async def on_ready():
     else:
         print(f"Cleaning server '{server.name}'.") 
 
+    bot_channel = server.get_channel(BOT_CHANNEL_ID)
+    await bot_channel.send(f"Cleanup started. Retention period is {RETENTION_PERIOD} days.")
+
     now = datetime.utcnow()
     cutoff_date = now - timedelta(days=RETENTION_PERIOD)
 
@@ -35,8 +39,9 @@ async def on_ready():
         message_count = len(old_messages)
         if message_count > 0:
             await delete_old_messages(old_messages)
-            await channel.send(f"Cleaning complete. {message_count} messaged deleted. Retention period is {RETENTION_PERIOD} days.")
+            await bot_channel.send(f"{message_count} messages deleted from channel '{channel.name}'.")
     
+    await bot_channel.send(f"Cleanup completed.")
     await client.close()
 
 client.run(API_TOKEN)
